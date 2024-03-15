@@ -1,0 +1,88 @@
+<html lang='en'>
+
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>P88 BET BOT</title>
+    <link rel='stylesheet' href='/styles.css' />
+    <script src='https://telegram.org/js/telegram-web-app.js'></script>
+    <script src='/js/search.js'></script>
+  </head>
+
+  <body class='overflow-hidden'>
+    <div
+      class='text-[16px] font-bold bg-[#033076] text-white py-3 px-5 leading-none'
+    >
+      {{text.header}}
+    </div>
+    <div class='flex flex-col px-5 py-7 gap-8'>
+      <div class='flex flex-row gap-4'>
+        <div class='flex-1 relative'>
+          <div
+            class='absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none'
+          >
+            <svg
+              class='w-4 h-4 dark:text-gray-400'
+              aria-hidden='true'
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              viewBox='0 0 20 20'
+            >
+              <path
+                stroke='currentColor'
+                stroke-linecap='round'
+                stroke-linejoin='round'
+                stroke-width='2'
+                d='m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z'
+              />
+            </svg>
+          </div>
+          <input
+            type='text'
+            id='searchInput'
+            class='bg-gray-50 border border-gray-300 text-black text-sm block w-full ps-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:border-blue-500 focus:ring-blue-500 outline-none'
+            placeholder='{{text.placeholder}}'
+          />
+        </div>
+        <a
+          href='/tournament'
+          class='leading-none text-[16px] text-white basis-1/4 bg-[#dc4c18] hover:bg-orange-600 flex items-center justify-center'
+        >{{text.search}}</a>
+      </div>
+      <div class='flex flex-col'>
+        <table class='w-full'>
+          <tr class='bg-[#e5e5e5]'>
+            <th
+              class='border border-[#b1b1b1] text-xs py-2 font-medium w-12 max-w-12'
+            >STT</th>
+            <th
+              class='border border-[#b1b1b1] text-xs py-2 font-medium'
+            >{{text.tournamentName}}</th>
+          </tr>
+        </table>
+        <div class='table h-screen'>
+          <div class='overflow-auto h-[70%]'>
+            <table class='w-full'>
+              {{#each dataTable}}
+                <tr class='data-row hover:bg-gray-100'>
+                  <td
+                    class='border border-[#b1b1b1] text-center text-xs py-2 w-12 max-w-12'
+                  >{{#addOne @index}}{{/addOne}}
+                  </td>
+                  <td class='border border-[#b1b1b1] text-start text-xs'>
+                    <a
+                      href='/tournament/{{id}}'
+                      class='cursor-pointer w-full block pl-3 py-2'
+                    >
+                      {{name}}
+                    </a>
+                  </td>
+                </tr>
+              {{/each}}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

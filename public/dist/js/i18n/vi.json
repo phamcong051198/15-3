@@ -1,0 +1,39 @@
+{
+  "betHistory": {
+    "title": "THÔNG TIN CƯỢC",
+    "status": "Trạng thái",
+    "SETTLED": "Cược đã kết thúc",
+    "RUNNING": "Mã cược chờ",
+    "day": "Ngày",
+    "today": "Hôm nay",
+    "yesterday": "Hôm qua",
+    "thisWeek": "Tuần này",
+    "lastWeek": "Tuần trước",
+    "within14Days": "Trong vòng 14 ngày",
+    "date": "Thời gian",
+    "placeholder": "Nhập ID lượt cược hoặc tên đội bóng",
+    "search": "Tìm kiếm",
+    "note": "Lưu ý: Bạn chỉ có thể xem dữ liệu từ 14 ngày qua.",
+    "table": {
+      "soccer": "Bóng đá",
+      "index": "STT",
+      "detail": "Chi tiết",
+      "selection": "Lựa chọn",
+      "live": " Trong trận (Khu vực nguy hiểm)",
+      "SPREAD": "Trận đấu kèo chấp",
+      "TOTAL_POINTS": "Trận đấu kèo tài xỉu",
+      "bettingOdds": "Tỉ lệ cược",
+      "wagerAmount": "Tiền đặt cược",
+      "risk": "Mạo hiểm:",
+      "winLose": "Thắng / thua",
+      "commission": "Hoa hồng",
+      "status": "Trạng thái",
+      "SETTLED": "Đã xử lý",
+      "RUNNING": "Đang chạy",
+      "win": "Thắng",
+      "lose": "Thua",
+      "firstHalf": "Nửa trận đầu",
+      "fullTime": "Trận đấu"
+    }
+  }
+}

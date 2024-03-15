@@ -1,0 +1,192 @@
+{
+  "start": {
+    "welcome": "<b>⭐ Chào mừng đến với P88 BET POT ⭐</b>\nVui lòng chọn ngôn ngữ để tiếp tục\n\n<b>⭐ Welcome to P88 BET POT ⭐</b>\nPlease select a language to continue",
+    "delete": "DELETE PREVIOUS MESSAGE",
+    "deleteAll": "DELETE ALL MESSAGE",
+    "goWebsite": "Go website",
+    "alert": "Alert",
+    "english": "English",
+    "Vietnamese": "Vietnamese"
+  },
+  "login": {
+    "headerLogin": " <b> Log in now to look up information and bet with P88❗</b>",
+    "login": "🔒 Log-in",
+    "userName": "Send me your Username:",
+    "userNameFail": "Username is invalid❗\nPlease log in again:",
+    "passWord": "Send me your Password:",
+    "loginSuccess": "<b>✅ LOGGED IN SUCCESSFULLY ✅</b>",
+    "subtextLoginSuccess": "\nSuccessfully logged in with ",
+    "loginFail": "<b>❌ LOGIN FAILED ❌</b>",
+    "subtextLoginFail": "\nUsername or password is incorrect❗"
+  },
+  "cancel": {
+    "cancel": "❌ Cancel"
+  },
+  "mainMenu": {
+    "headerHeadMainMenu": "<b>WELCOME </b>",
+    "headerEndMainMenu": "<b>TO P88 BET BOT❗</b>\n🔥 Attractive bet, P88 BET BOT is available\n📣Chat now with P88 to look up information and bet on attractive tournaments❗",
+    "accountInformation": "Account information",
+    "matchInformation": "Match information",
+    "betHistory": "Betting history",
+    "setting": "Settings",
+    "logout": "Log out",
+    "headerMatchInformation": "You want match information\nI have the following interesting tournaments:",
+    "allMatch": "⏩ See all tournaments"
+  },
+  "settings": {
+    "goBack": "🔙 GO BACK",
+    "menu": "MENU",
+    "oddsFormat": "Odds Format",
+    "timezone": "Timezone",
+    "language": "Language",
+    "password": " Change password",
+    "selectLanguage": "Select language !",
+    "english": "English",
+    "vietnamese": "Vietnamese",
+    "alertLanguage": "The language has been changed !",
+    "selectOddFormat": " Select your preferred odd format !",
+    "decimal": "DECIMAL",
+    "hongkong": "HONGKONG",
+    "malay": "MALAY",
+    "indonesian": "INDONESIAN",
+    "american": "AMERICAN",
+    "alertOddsFormat": "The odds format has been changed !",
+    "selectTimezone": "Select your preferred time zone !\n-----------------------------------------------\n1️⃣. UTC+00, UTC/GMT/Z Timezone\n2️⃣. GMT+7, HaNoi/Bangkok/Jakarta",
+    "UTC": "UTC+00",
+    "GMT": "GMT+7",
+    "alertTimezone": "Your preferred time zone has been changed !"
+  },
+  "betHistory": {
+    "headerBetHistory": "🔍 Would you like to view the history of Pending Bets or Settled Bets?",
+    "pendingBetCode_title": "Pending bet code",
+    "betConclusion_title": "Bet conclusion",
+    "pendingBetCode": {
+      "title": "📁 Pending bet code",
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "thisWeek": "This week",
+      "lastWeek": "Last week",
+      "within14Days": "Within 14 days",
+      "result": {
+        "title": "⚽⚽ Soccer ⚽⚽",
+        "noData": "❗❗ No pending bets during the specified time \n📣Chat now with P88 to inquire about information and place bets for exciting tournaments ❗",
+        "vs": " vs ",
+        "league": "⭐ League: ",
+        "match": "📌 Match: ",
+        "start": "✔️ Start: ",
+        "time": "✔️ Time: ",
+        "1": "First half",
+        "0": "Full match",
+        "oddsFormat": "✔️ Odds format: ",
+        "betType": "✔️ Bet type: ",
+        "SPREAD": "Spread",
+        "TOTAL_POINTS": "Total points",
+        "bettingOdds": "⭐ Betting odds: ",
+        "price": "Price: ",
+        "risk": "✔️ Risk: ",
+        "win": "✔️ Win: ",
+        "betCode": "✔️ Bet ID: ",
+        "bettingTime": "✔️ Betting time: ",
+        "more": "👉 VIEW MORE PENDING BETS 👈"
+      }
+    },
+    "betConclusion": {
+      "title": "📁 Bet Conclusion",
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "thisWeek": "This week",
+      "lastWeek": "Last week",
+      "within14Days": "Within 14 days",
+      "result": {
+        "title": "⚽⚽ Soccer ⚽⚽",
+        "noData": "❗❗ No pending bets during the specified time \n📣Chat now with P88 to inquire about information and place bets for exciting tournaments ",
+        "vs": " vs ",
+        "league": "⭐ League:",
+        "match": "📌 Match: ",
+        "start": "✔️ Start: ",
+        "time": "✔️ Time: ",
+        "1": "First half",
+        "0": "Full match",
+        "oddsFormat": "✔️ Odds format: ",
+        "betType": "✔️ Bet type: ",
+        "SPREAD": "Spread",
+        "TOTAL_POINTS": "Total points",
+        "bettingOdds": "⭐ Betting odds: ",
+        "price": "Price: ",
+        "risk": "✔️ Risk: ",
+        "win": "✔️ Win: ",
+        "betCode": "✔️ Bet ID: ",
+        "bettingTime": "✔️ Betting time: ",
+        "result": "⭐ Match result: ",
+        "firstHalf": "✔️ First half: ",
+        "fullTime": "✔️ Full-time: ",
+        "bettingResult": "⭐ Betting ticket result: ",
+        "win/loss": "✔️ Win/Loss: ",
+        "commission": "✔️ Commission: ",
+        "more": "👉 VIEW MORE BETTING HISTORY 👈"
+      }
+    }
+  },
+  "accountInfo": {
+    "title": "🌟🌟 ACCOUNT INFORMATION 🌟🌟",
+    "username": "💸 Username: ",
+    "currency": "💸 Currency: MYR",
+    "available": "💸 Current available balance: ",
+    "credit": "💸 Current credit balance: "
+  },
+  "menu": "Menu",
+  "back": "◀️ Back",
+  "matchInfo": {
+    "header": "We have the following match information for you",
+    "liveMatch": "Live match",
+    "matchUpcoming": "The match is about to take place",
+    "todayMatch": "Today match",
+    "weekMatch": "Matches of the week",
+    "tournamentInfo": "Tournament information",
+    "betInfo": "Betting information",
+    "back": "MENU"
+  },
+  "LIVE_MATCH": {
+    "notie": "There are currently no live football matches!",
+    "header": "⚽ LIVE MATCH LIST",
+    "allMatch": "All matches"
+  },
+  "TODAY_MATCH": {
+    "notie": "There is no football match today!",
+    "header": "⚽ TODAY'S MATCH LIST",
+    "allMatch": "All matches"
+  },
+  "WEEK_MATCH": {
+    "notie": "There is no football match this week!",
+    "header": "⚽ THIS WEEK MATCH LIST",
+    "allMatch": "All matches"
+  },
+  "MONTH_MATCH": {
+    "notie": "There is no football match this month!",
+    "header": "⚽ THIS MONTH'S MATCH LIST",
+    "allMatch": "All matches"
+  },
+  "NEXT_MONTH_MATCH": {
+    "notie": "There will be no football matches next month!",
+    "header": "⚽ LIST OF NEXT MONTH'S MATCHES",
+    "allMatch": "All matches"
+  },
+  "LEAGUES": {
+    "notie": "There is no leagues!",
+    "header": "⚽ LEAGUE LIST",
+    "allMatch": "All Leagues"
+  },
+  "matchUpcoming": {
+    "header": "⚽ You want to see the match list:",
+    "today": "Today",
+    "thisWeek": "This week",
+    "thisMonth": "This month",
+    "nextMonth": "Next month",
+    "menu": "Menu"
+  },
+  "text": {
+    "currentPage": "Current page:",
+    "firstPage": "You are on the first page!",
+    "endPage": "You have reached the end page!"
+  }
+}

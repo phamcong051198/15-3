@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  mongodb:
+    container_name: p88-bot-mongodb
+    image: mongo:latest
+    ports:
+      - 4017:27017
+    volumes:
+      - ./docker/rs-init.sh:/scripts/rs-init.sh
+      - mongodb_data_container_p88:/data/db
+    entrypoint: ['/usr/bin/mongod', '--bind_ip_all']
+    networks:
+      - p88-bot-be
+
+  redis:
+    container_name: p88-bot-redis
+    image: 'redis:alpine'
+    ports:
+      - 6378:6379
+    networks:
+      - p88-bot-be
+volumes:
+  mongodb_data_container_p88:
+networks:
+  p88-bot-be:
+    driver: bridge

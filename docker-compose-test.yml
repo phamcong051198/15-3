@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  p88-bot-service:
+    container_name: p88-bot-be
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 3300:3000
+    depends_on:
+      - mongodb
+      - redis
+    networks:
+      - p88-bot-be
+
+  mongodb:
+    container_name: p88-bot-mongodb
+    image: mongo:latest
+    ports:
+      - 3017:27017
+    volumes:
+      - ./docker/rs-init-test.sh:/scripts/rs-init-test.sh
+      - mongodb_data_container_p88:/data/db
+    entrypoint: ['/usr/bin/mongod', '--bind_ip_all', '--replSet', 'dbrs']
+    links:
+      - mongodb1
+      - mongodb2
+    restart: always
+    networks:
+      - p88-bot-be
+
+  mongodb1:
+    container_name: p88-bot-mongodb-1
+    image: mongo:latest
+    ports:
+      - 3018:27017
+    volumes:
+      - mongodb_data_container_p88_1:/data/db
+    entrypoint: ['/usr/bin/mongod', '--bind_ip_all', '--replSet', 'dbrs']
+    restart: always
+    networks:
+      - p88-bot-be
+
+  mongodb2:
+    container_name: p88-bot-mongodb-2
+    image: mongo:latest
+    ports:
+      - 3019:27017
+    volumes:
+      - mongodb_data_container_p88_2:/data/db
+    entrypoint: ['/usr/bin/mongod', '--bind_ip_all', '--replSet', 'dbrs']
+    restart: always
+    networks:
+      - p88-bot-be
+
+  redis:
+    container_name: p88-bot-redis
+    image: 'redis:alpine'
+    ports:
+      - 6378:6379
+    networks:
+      - p88-bot-be
+volumes:
+  mongodb_data_container_p88:
+  mongodb_data_container_p88_1:
+  mongodb_data_container_p88_2:
+networks:
+  p88-bot-be:
+    driver: bridge

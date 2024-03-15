@@ -1,0 +1,523 @@
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <title>
+      P88 BET BOT
+    </title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link
+      rel='stylesheet'
+      href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback'
+    />
+    <!-- Font Awesome -->
+    <link rel='stylesheet' href='/plugins/fontawesome-free/css/all.min.css' />
+    <!-- DataTables -->
+    <link
+      rel='stylesheet'
+      href='/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css'
+    />
+    <link
+      rel='stylesheet'
+      href='/plugins/datatables-responsive/css/responsive.bootstrap4.min.css'
+    />
+    <link
+      rel='stylesheet'
+      href='/plugins/datatables-buttons/css/buttons.bootstrap4.min.css'
+    />
+    <!-- Theme style -->
+    <link rel='stylesheet' href='/dist/css/adminlte.min.css' />
+    {{! ////// }}
+    <!-- daterange picker -->
+    <link
+      rel='stylesheet'
+      href='/plugins/daterangepicker/daterangepicker.css'
+    />
+
+    <style>
+      .table-container { 
+        overflow-x: auto; 
+      } 
+      .custom-table {
+        min-width: 400px; border-collapse: collapse; 
+      } 
+      .custom-table th{
+        border: 1px solid #ccc; padding: 8px;
+        vertical-align:middle !important;
+        text-align: center;
+      }
+      .custom-table td {
+        border: 1px solid #ccc; padding: 8px;
+      }
+       /* CSS for loading overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.548);
+            z-index: 999;
+            display: none;
+        }
+        
+        .table-container.loading-overlay {
+            position: relative;
+        }
+
+        .table-container.loading-overlay .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .loading-spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgb(112, 111, 111);
+            font-size: 16px;
+            font-weight: 600;
+        }
+    </style>
+  </head>
+  <body class='hold-transition sidebar-mini' style='font-size: 14px;'>
+    <div class='wrapper'>
+      <div>
+        <div style='padding: 10px;background-color: #033076; color: white;'>
+          <h5 style='margin: 0; font-weight: 600;'>
+            {{translate.betHistory.title}}
+          </h5>
+        </div>
+        <!-- /.card-header -->
+        <div
+          style='display: flex; justify-content: start; column-gap: 20px; padding: 20px 10px 15px; font-size: 16px;  flex-wrap: wrap;'
+        >
+          <div style='display: flex; justify-content: start; column-gap: 20px;'>
+            <div class='p-0 form-group'>
+              <label>
+                {{translate.betHistory.status}}:
+              </label>
+              <select class='custom-select' id='selectStatusId'>
+                <option value='RUNNING'>
+                  {{translate.betHistory.RUNNING}}
+                </option>
+                <option value='SETTLED'>
+                  {{translate.betHistory.SETTLED}}
+                </option>
+              </select>
+            </div>
+            <div class='p-0 form-group'>
+              <label>
+                {{translate.betHistory.day}}:
+              </label>
+              <select class='custom-select' id='selectDateId'>
+                <option value='0'>
+                  {{translate.betHistory.today}}
+                </option>
+                <option value='1'>
+                  {{translate.betHistory.yesterday}}
+                </option>
+                <option value='2'>
+                  {{translate.betHistory.thisWeek}}
+                </option>
+                <option value='3'>
+                  {{translate.betHistory.lastWeek}}
+                </option>
+                <option value='4'>
+                  {{translate.betHistory.within14Days}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class='p-0 form-group' style='width: 420px;'>
+            <label>
+              {{translate.betHistory.date}}:
+            </label>
+            <div class='input-group'>
+              <div class='input-group-prepend'>
+                <span class='input-group-text'>
+                  <i class='far fa-calendar-alt'></i>
+                </span>
+              </div>
+              <input
+                type='text'
+                class='form-control float-right'
+                id='reservation'
+                value='{{fromDate}} - {{toDate}}'
+              />
+            </div>
+          </div>
+          <div style='margin-top: 5px; display: flex;' class='col-md-12 p-0'>
+            <div class='input-group'>
+              <div class='input-group-prepend'>
+                <span class='input-group-text'>
+                  <i class='fa fa-search'></i>
+                </span>
+              </div>
+              <input
+                type='search'
+                class='form-control'
+                placeholder='{{translate.betHistory.placeholder}}'
+                style='margin-right: 30px; border-radius: 0 4px 4px 0; max-width: 820px;'
+                id='searchId'
+              />
+              <button
+                type='button'
+                class='btn btn-danger'
+                style='padding: 0 20px; font-size: 16px;'
+                id='btn_search'
+              >
+                {{translate.betHistory.search}}
+              </button>
+            </div>
+          </div>
+        </div>
+        <p style='margin-bottom: 5px; font-size: 15px; padding-left: 10px;'>
+          {{translate.betHistory.note}}
+        </p>
+        <div class='table-container loading-overlay'>
+          <!-- Loading overlay -->
+          <div class='overlay' id='overlay'>
+            <div class='loading-spinner'>
+              Loading...
+            </div>
+          </div>
+          <div style='padding: 10px;'>
+            <table class='table table-bordered table-striped custom-table'>
+              <thead>
+                <tr>
+                  <th>
+                    {{translate.betHistory.table.index}}
+                  </th>
+                  <th>
+                    {{translate.betHistory.table.detail}}
+                  </th>
+                  <th>
+                    {{translate.betHistory.table.selection}}
+                  </th>
+                  <th>
+                    {{translate.betHistory.table.bettingOdds}}
+                  </th>
+                  <th>
+                    {{translate.betHistory.table.wagerAmount}} (MYR)
+                  </th>
+                  <th>
+                    {{translate.betHistory.table.winLose}}
+                  </th>
+                  <th class='commissionClass'>
+                    {{translate.betHistory.table.commission}}
+                  </th>
+                  <th>
+                    {{translate.betHistory.table.status}}
+                  </th>
+                </tr>
+              </thead>
+              <tbody id='dataTableId'>
+                {{!-- {{#each dataTable}}
+                  <tr style="text-align: center;">
+                  <td>{{@index}}</td>
+
+                  <td>{{row.betId}} {{translate.betHistory.table.soccer}} <span style="font-weight: 600;">{{formatDate(new Date(row.placedAt), 'yyyy-MM-dd HH:mm:ss')}}</span>{{row.settledAt? `${formatDate(new Date(row.settledAt), 'yyyy-MM-dd HH:mm:ss')}`: ''}}
+          </td>
+          <td>${row.teamName} <span style="color: #dc3545;">${(row?.handicap < 0 ? '-' : '+') + (row.handicap || 0)}</span> ${row.team1} -vs- ${row.team2}` +
+          ${row.isLive === 'FALSE' ? '' : '<span style="color: #dc3545; font-weight:600">{{translate.betHistory.table.live}}</span>'} ${row.betType === 'SPREAD' ? '{{translate.betHistory.table.SPREAD}}' : '{{translate.betHistory.table.TOTAL_POINTS}}'} ${row.leagueName} ${row.eventStartTime ? `@ ${formatDate(new Date(row.eventStartTime), 'yyyy-MM-dd')}` : ''} </td>` +
+          <td>${row.price} </br> <span style="color: #dc3545;  font-weight:700">${row?.oddsFormat[0] || 'M'}</span></td>
+                  
+                    <td>{{translate.betHistory.table.risk}} ${parseFloat(row.risk).toFixed(2)} </br>(${parseFloat(row.risk).toFixed(2)})</td>
+                  ${row.betStatus === 'LOSE' ? '<td style="color: #dc3545;" >' : '<td>'} ${parseFloat(row.winLoss || row.win).toFixed(2)}</td>
+                  
+                  <td class='commissionClass'>${parseFloat(row.customerCommission || 0).toFixed(2)}</td>` +
+          <td>${!isSettled ? '<span style="color: #12a123; font-weight:700">{{translate.betHistory.table.RUNNING}}</span>' : `{{translate.betHistory.table.SETTLED}} <span style='color: ${row.betStatus !== 'LOSE' ? '#12a123' : '#dc3545'}; font-weight:700'>${row.betStatus !== 'LOSE' ? '{{translate.betHistory.table.win}}' : '{{translate.betHistory.table.lose}}'}</span> </br> ${row.team1Score ? `{{translate.betHistory.table.firstHalf}}: ${row.team1Score} - ${row.team2Score} </br>` : ''} {{translate.betHistory.table.fullTime}}: ${row.ftTeam1Score} - ${row.ftTeam2Score}`}</td>` +
+          </tr>
+                {{/each}} --}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- jQuery -->
+    <script src='/plugins/jquery/jquery.min.js'></script>
+    <!-- Bootstrap 4 -->
+    <!-- DataTables  & Plugins -->
+    <script src='/plugins/datatables/jquery.dataTables.min.js'></script>
+    {{! <script
+      src='/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js'
+    ></script>
+    <script
+      src='/plugins/datatables-responsive/js/responsive.bootstrap4.min.js'
+    ></script>
+    <script
+      src='/plugins/datatables-buttons/js/dataTables.buttons.min.js'
+    ></script> }}
+    <script src='/plugins/jszip/jszip.min.js'></script>
+    <script src='/plugins/pdfmake/pdfmake.min.js'></script>
+    <script src='/plugins/pdfmake/vfs_fonts.js'></script>
+    <script src='/plugins/datatables-buttons/js/buttons.html5.min.js'></script>
+    <script src='/plugins/datatables-buttons/js/buttons.print.min.js'></script>
+    <script src='/plugins/datatables-buttons/js/buttons.colVis.min.js'></script>
+    <!-- AdminLTE for demo purposes -->
+    <!-- Page specific script -->
+    <script>
+      $(function () {
+        $('#selectDateId').change(function () {
+          const selectedValue = $(this).val();
+          const currentDate = moment();
+
+          let startDate, endDate;
+          switch (selectedValue) {
+            case '0':
+              startDate = currentDate;
+              endDate = currentDate;
+              break;
+            case '1':
+              startDate = moment(currentDate).subtract(1, 'days');
+              endDate = moment(startDate);
+              break;
+            case '2':
+              startDate = moment(currentDate).startOf('week');
+              endDate = moment(currentDate).endOf('week');
+              break;
+            case '3':
+              startDate = moment(currentDate).subtract(1, 'weeks').startOf('week');
+              endDate = moment(currentDate).subtract(1, 'weeks').endOf('week');
+              break;
+            case '4':
+              startDate = moment(currentDate).subtract(13, 'days');
+              endDate = moment(currentDate);
+              break;
+            default:
+              startDate = currentDate;
+              endDate = currentDate;
+          }
+
+          const startDateString = startDate.format('MM/DD/YYYY');
+          const endDateString = endDate.format('MM/DD/YYYY');
+
+          $('#reservation').val(startDateString + ' - ' + endDateString);
+
+          const fromDate = startDate.startOf('day').toISOString();
+          const toDate = endDate.endOf('day').toISOString();
+          const currentUrl = window.location.href;
+          const url = new URL(currentUrl);
+
+          url.searchParams.set('fromDate', fromDate);
+          url.searchParams.set('toDate', toDate);
+          const newUrl = url.toString();
+          history.replaceState(null, null, newUrl);
+          
+        });
+        //Date range picker
+        $('#reservation').daterangepicker()
+        // add event apply.daterangepicker
+        $('#reservation').on('apply.daterangepicker', function (ev, picker) {
+          const fromDate = picker.startDate.toISOString();
+          const toDate = picker.endDate.toISOString();
+          const currentUrl = window.location.href;
+          const url = new URL(currentUrl);
+
+          url.searchParams.set('fromDate', fromDate);
+          url.searchParams.set('toDate', toDate);
+          const newUrl = url.toString();
+          history.replaceState(null, null, newUrl);
+        });
+      })
+    </script>
+
+    {{! update queryParam bet list }}
+    <script>
+      document.getElementById('selectStatusId').addEventListener('change', function() {
+        const value = this.value;
+        
+        const currentUrl = window.location.href;
+        const url = new URL(currentUrl);
+        url.searchParams.set('betlist', value);
+        const newUrl = url.toString();
+        history.replaceState(null, null, newUrl);
+      });
+    </script>
+
+    {{! update queryParam search}}
+    <script>
+      $(function () {
+        $('#searchId').on('input', function () {
+          const searchValue = $(this).val();
+
+          const currentUrl = new URL(window.location.href);
+          currentUrl.searchParams.set('searchKey', searchValue);
+
+          window.history.replaceState(null, null, currentUrl.toString());
+        });
+      });
+    </script>
+
+    {{! convert string to date time }}
+    <script src='/dist/js/formatDate.js'></script>
+    <script>
+      function showLoading() {
+          $('#overlay').show();
+      }
+
+      // Function to hide loading overlay
+      function hideLoading() {
+          $('#overlay').hide();
+      }
+
+      $('#btn_search').click(function (event) {
+          //event.preventDefault();
+
+          const searchKey = $('#searchId').val();
+          const reservation = $('#reservation').val();
+          const betlist = $('#selectStatusId').val();
+
+          const [startDateString, endDateString] = reservation.split(' - ');
+
+          const fromDate = moment(startDateString, 'MM/DD/YYYY').startOf('day');
+          const toDate = moment(endDateString, 'MM/DD/YYYY').endOf('day');
+          const queryParams = {
+              fromDate: fromDate.toISOString(),
+              toDate: toDate.toISOString(),
+              betlist,
+              searchKey: searchKey || '',
+          };
+
+          const queryString = new URLSearchParams(queryParams).toString();
+          // call api
+
+          showLoading();
+          fetch(`/api/betHistory?${queryString}`, {
+              method: 'GET',
+          })
+              .then(async (response) => {
+                  return await response.json();
+              })
+              .then((data) => {
+                  const tableBody = $('#dataTableId');
+                  tableBody.empty();
+                  const isSettled = JSON.parse(data.body).betlist;
+
+                  var count = 0;
+                  JSON.parse(data.body).dataTable.forEach((row) => {
+                      const newRow =
+                          `
+                      <tr style="text-align: center;">
+                        <td>${++count}</td>
+
+                        <td>${row.betId} {{translate.betHistory.table.soccer}} <span style="font-weight: 600;">${formatDate(new Date(row.placedAt), 'yyyy-MM-dd HH:mm:ss')}</span> ` +
+                          (row.settledAt
+                              ? `${formatDate(new Date(row.settledAt), 'yyyy-MM-dd HH:mm:ss')}`
+                              : '') +
+                          '</td>' +
+                          
+                          `<td>${row.teamName} <span style="color: #dc3545;">${(row?.handicap < 0 ? '' : '+') + (row.handicap || 0)}</span> ${row.team1} -vs- ${row.team2}` +
+                          `${row.isLive === 'FALSE' ? '' : '<span style="color: #dc3545; font-weight:600">{{translate.betHistory.table.live}}</span>'}</br> ${row.betType === 'SPREAD' ? '{{translate.betHistory.table.SPREAD}}' : '{{translate.betHistory.table.TOTAL_POINTS}}'} ${row.leagueName} ${row.eventStartTime ? `@ ${formatDate(new Date(row.eventStartTime), 'yyyy-MM-dd')}` : ''} </td>` +
+
+                          `<td>${row.price} </br> <span style="color: #dc3545;  font-weight:700">${row?.oddsFormat[0] || 'M'}</span></td>
+
+                        <td>{{translate.betHistory.table.risk}} ${parseFloat(row.risk).toFixed(2)} </br>(${parseFloat(row.risk).toFixed(2)})</td>
+
+                        ${row.betStatus === 'LOSE' ? '<td style="color: #dc3545;" >' : '<td>'} ${parseFloat(row.winLoss || row.win).toFixed(2)}</td>
+
+                        <td class='commissionClass'>${parseFloat(row.customerCommission || 0).toFixed(2)}</td>` +
+
+                          `<td>${!isSettled ? '<span style="color: #12a123; font-weight:700">{{translate.betHistory.table.RUNNING}}</span>' : `{{translate.betHistory.table.SETTLED}} <span style='color: ${row.betStatus !== 'LOSE' ? '#12a123' : '#dc3545'}; font-weight:700'>${row.betStatus !== 'LOSE' ? '{{translate.betHistory.table.win}}' : '{{translate.betHistory.table.lose}}'}</span> </br> ${row.team1Score ? `{{translate.betHistory.table.firstHalf}}: ${row.team1Score} - ${row.team2Score} </br>` : ''} {{translate.betHistory.table.fullTime}}: ${row.ftTeam1Score} - ${row.ftTeam2Score}`}</td>` +
+                          '</tr>';
+                      tableBody.append(newRow);
+                  });
+                  if (!isSettled) {
+                      $('.commissionClass').hide();
+                  } else {
+                      $('.commissionClass').show();
+                  }
+                  hideLoading();
+              })
+              .catch((error) => {
+                  hideLoading();
+                  $('#loginError')
+                      .text('Incorrect username or password. Please try again.')
+                      .show();
+              });
+      });
+
+    </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var selectElement = document.getElementById('selectStatusId');
+        
+      if (!{{
+        betlist
+      }}) {
+        $('.commissionClass').hide();
+        selectElement.selectedIndex = 0;
+      } else {
+        $('.commissionClass').show();
+        selectElement.selectedIndex = 1;
+      }
+    });
+
+      ///////////////////////////////////
+      const tableBody = $('#dataTableId');
+      tableBody.empty();
+      const isSettled = {{betlist}};
+      var count = 0;
+      {{{dataTable}}}.forEach((row) => {
+        const newRow =
+          `
+          <tr style="text-align: center;">
+          <td>${++count}</td>
+
+          <td>${row.betId} {{translate.betHistory.table.soccer}} <span style="font-weight: 600;">${formatDate(new Date(row.placedAt), 'yyyy-MM-dd HH:mm:ss')}</span> ` +
+            (row.settledAt
+            ? `${formatDate(new Date(row.settledAt), 'yyyy-MM-dd HH:mm:ss')}`
+              : '') +
+          '</td>' +
+                          
+          `<td>${row.teamName} <span style="color: #dc3545;">${(row?.handicap < 0 ? '' : '+') + (row.handicap || 0)}</span> ${row.team1} -vs- ${row.team2}` +
+            `${row.isLive === 'FALSE' ? '' : '<span style="color: #dc3545; font-weight:600">{{translate.betHistory.table.live}}</span>'}</br> ${row.betType === 'SPREAD' ? '{{translate.betHistory.table.SPREAD}}' : '{{translate.betHistory.table.TOTAL_POINTS}}'} ${row.leagueName} ${row.eventStartTime ? `@ ${formatDate(new Date(row.eventStartTime), 'yyyy-MM-dd')}` : ''} </td>` +
+
+          `<td>${row.price} </br> <span style="color: #dc3545;  font-weight:700">${row?.oddsFormat[0] || 'M'}</span></td>
+
+          <td>{{translate.betHistory.table.risk}} ${parseFloat(row.risk).toFixed(2)} </br>(${parseFloat(row.risk).toFixed(2)})</td>
+
+            ${row.betStatus === 'LOSE' ? '<td style="color: #dc3545;" >' : '<td>'} ${parseFloat(row.winLoss || row.win).toFixed(2)}</td>
+
+          <td class='commissionClass'>${parseFloat(row.customerCommission || 0).toFixed(2)}</td>` +
+
+          `<td>${!isSettled ? '<span style="color: #12a123; font-weight:700">{{translate.betHistory.table.RUNNING}}</span>' : `{{translate.betHistory.table.SETTLED}} <span style='color: ${row.betStatus !== 'LOSE' ? '#12a123' : '#dc3545'}; font-weight:700'>${row.betStatus !== 'LOSE' ? '{{translate.betHistory.table.win}}' : '{{translate.betHistory.table.lose}}'}</span> </br> ${row.team1Score ? `{{translate.betHistory.table.firstHalf}}: ${row.team1Score} - ${row.team2Score} </br>` : ''} {{translate.betHistory.table.fullTime}}: ${row.ftTeam1Score} - ${row.ftTeam2Score}`}</td>` +
+          '</tr>';
+        tableBody.append(newRow);
+      });
+      if (!isSettled) {
+        $('.commissionClass').hide();
+      } else {
+        $('.commissionClass').show();
+      }
+      
+    //////////////////////////////////
+  </script>
+
+    {{! I18n }}
+    <script src='/dist/js/translate.js'></script>
+
+    <!-- InputMask -->
+    <script src='/plugins/moment/moment.min.js'></script>
+    <script src='/plugins/inputmask/jquery.inputmask.min.js'></script>
+    <!-- date-range-picker -->
+    <script src='/plugins/daterangepicker/daterangepicker.js'></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script
+      src='/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js'
+    ></script>
+    <!-- Bootstrap Switch -->
+  </body>
+</html>

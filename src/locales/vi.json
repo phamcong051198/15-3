@@ -1,0 +1,192 @@
+{
+  "start": {
+    "welcome": "<b>⭐ Chào mừng đến với P88 BET POT ⭐</b>\nVui lòng chọn ngôn ngữ để tiếp tục\n\n<b>⭐ Welcome to P88 BET POT ⭐</b>\nPlease select a language to continue",
+    "delete": "Xóa tin nhắn phía trước",
+    "deleteAll": "Xóa tất cả tin nhắn",
+    "goWebsite": "Đi tới Website",
+    "alert": "Thông báo",
+    "english": "Tiếng anh",
+    "Vietnamese": "Tiếng việt"
+  },
+  "login": {
+    "headerLogin": " <b> Đăng nhập ngay để tra cứu thông tin và đặt kèo với P88❗</b>",
+    "login": "🔒 Đăng nhập",
+    "userName": "Vui lòng nhập tên đăng nhập:",
+    "userNameFail": "Tên đăng nhập không hợp lệ❗\nVui lòng thử lại:",
+    "passWord": "Vui lòng nhập mật khẩu:",
+    "loginSuccess": "<b>✅ ĐĂNG NHẬP THÀNH CÔNG ✅</b>",
+    "subtextLoginSuccess": "\nĐăng nhập thành công với ",
+    "loginFail": "<b>❌ ĐĂNG NHẬP THẤT BẠI ❌</b>",
+    "subtextLoginFail": "\nTên đăng nhập hoặc mật khẩu không chính xác❗"
+  },
+  "cancel": {
+    "cancel": "❌ Hủy"
+  },
+  "mainMenu": {
+    "headerHeadMainMenu": "<b>CHÀO MỪNG </b>",
+    "headerEndMainMenu": "<b>ĐẾN VỚI P88 BET BOT❗</b>\n🔥 Đặt kèo hot, đã có P88 BET BOT\n📣Chat ngay với P88 để tra cứu thông tin và lên kèo cho những giải đấu hấp dẫn❗",
+    "accountInformation": "Thông tin tài khoản",
+    "matchInformation": "Thông tin trận đấu",
+    "betHistory": "Lịch sử cược",
+    "setting": "Cài đặt",
+    "logout": "Đăng xuất",
+    "headerMatchInformation": "Bạn muốn thông tin trận đấu\nTôi có các giải đấu hấp dẫn sau:",
+    "allMatch": "⏩ Xem tất cả các giải đấu"
+  },
+  "settings": {
+    "goBack": "🔙 QUAY LẠI",
+    "menu": "MENU",
+    "oddsFormat": "Định dạng kèo",
+    "timezone": "Múi giờ",
+    "language": "Ngôn ngữ",
+    "password": "Đổi mật khẩu",
+    "selectLanguage": "Chọn ngôn ngữ !",
+    "english": "Tiếng anh",
+    "vietnamese": "Tiếng việt",
+    "alertLanguage": "Ngôn ngữ đã được thay đổi !",
+    "selectOddFormat": "Chọn kiểu hiển thị kèo !",
+    "decimal": "DECIMAL",
+    "hongkong": "HONGKONG",
+    "malay": "MALAY",
+    "indonesian": "INDONESIAN",
+    "american": "AMERICAN",
+    "alertOddsFormat": "Định dạng kèo đã được thay đổi !",
+    "selectTimezone": "Chọn múi giờ ưa thích của bạn !\n----------------------------------------------\n1️⃣. UTC+00, UTC/GMT/Z Timezone\n2️⃣. GMT+7, HaNoi/Bangkok/Jakarta",
+    "UTC": "UTC+00",
+    "GMT": "GMT+7",
+    "alertTimezone": "Múi giờ đã được thay đổi !"
+  },
+  "betHistory": {
+    "headerBetHistory": "🔍 Bạn muốn xem lịch sử Mã cược chờ hay Cược đã kết thúc?",
+    "pendingBetCode_title": "Mã cược chờ",
+    "betConclusion_title": "Cược đã kết thúc",
+    "pendingBetCode": {
+      "title": "📁 Mã cược chờ",
+      "today": "Hôm nay",
+      "yesterday": "Hôm qua",
+      "thisWeek": "Tuần này",
+      "lastWeek": "Tuần trước",
+      "within14Days": "Trong vòng 14 ngày",
+      "result": {
+        "title": "⚽⚽ BÓNG ĐÁ ⚽⚽",
+        "noData": "❗❗ Không có vé cược nào đang chờ trong thời gian trên \n📣Chat ngay với P88 để tra cứu thông tin và lên kèo cho những giải đấu hấp dẫn ❗",
+        "vs": " vs ",
+        "league": "⭐ Giải: ",
+        "match": "📌 Trận đã chọn: ",
+        "start": "✔️ bắt đầu: ",
+        "time": "✔️ Thời gian: ",
+        "1": "Nửa trận đầu",
+        "0": "Toàn trận",
+        "oddsFormat": "✔️ Định dạng kèo: ",
+        "betType": "✔️ Kiểu cược: ",
+        "SPREAD": "Cược chấp",
+        "TOTAL_POINTS": "Tài xỉu",
+        "bettingOdds": "⭐ Kèo cược: ",
+        "price": "Giá: ",
+        "risk": "✔️ Tiền đặt cược: ",
+        "win": "✔️ Thắng: ",
+        "betCode": "✔️ Mã cược chờ: ",
+        "bettingTime": "✔️ Thời gian cược: ",
+        "more": "👉 XEM THÊM MÃ CƯỢC CHỜ 👈"
+      }
+    },
+    "betConclusion": {
+      "title": "📁 Cược đã kết thúc",
+      "today": "Hôm nay",
+      "yesterday": "Hôm qua",
+      "thisWeek": "Tuần này",
+      "lastWeek": "Tuần trước",
+      "within14Days": "Trong vòng 14 ngày",
+      "result": {
+        "title": "⚽⚽ BÓNG ĐÁ ⚽⚽",
+        "noData": "❗❗ Không có lịch sử cược trong thời gian trên \n📣Chat ngay với P88 để tra cứu thông tin và lên kèo cho những giải đấu hấp dẫn ❗",
+        "vs": " vs ",
+        "league": "⭐ Giải: ",
+        "match": "📌 Trận đã chọn: ",
+        "start": "✔️ bắt đầu: ",
+        "time": "✔️ Thời gian: ",
+        "1": "Nửa trận đầu",
+        "0": "Toàn trận",
+        "oddsFormat": "✔️ Định dạng kèo: ",
+        "betType": "✔️ Kiểu cược: ",
+        "SPREAD": "Cược chấp",
+        "TOTAL_POINTS": "Tài xỉu",
+        "bettingOdds": "⭐ Kèo cược: ",
+        "price": "Giá: ",
+        "risk": "✔️ Tiền đặt cược: ",
+        "win": "✔️ Thắng: ",
+        "betCode": "✔️ Mã cược chờ: ",
+        "bettingTime": "✔️ Thời gian cược: ",
+        "result": "⭐ Match result: ",
+        "firstHalf": "✔️ Nửa trận đầu: ",
+        "fullTime": "✔️ Trận đấu: ",
+        "bettingResult": "⭐ Kết quả vé cược:",
+        "win/loss": "✔️ Thắng/Thua: ",
+        "commission": "✔️ Hoa hồng: ",
+        "more": "👉 XEM THÊM LỊCH SỬ CƯỢC 👈"
+      }
+    }
+  },
+  "accountInfo": {
+    "title": "🌟🌟 THÔNG TIN TÀI KHOẢN 🌟🌟",
+    "username": "💸 Tên đăng nhập: ",
+    "currency": "💸 Tiền tệ: MYR",
+    "available": "💸 Số dư khả dụng hiện tại: ",
+    "credit": "💸 Tín dụng hiện tại: "
+  },
+  "menu": "Menu",
+  "back": "◀️ Quay lại",
+  "matchInfo": {
+    "header": "Chúng tôi có các thông tin trận đấu sau cho bạn",
+    "liveMatch": "Trận đấu trực tiếp",
+    "matchUpcoming": "Trận đấu sắp diễn ra",
+    "todayMatch": "Trận đấu hôm nay",
+    "weekMatch": "Trận đấu tuần này",
+    "leagueInfo": "Thông tin giải đấu",
+    "betInfo": "Thông tin kèo",
+    "back": "MENU"
+  },
+  "LIVE_MATCH": {
+    "notie": "Hiện tại không có trận bóng trực tiếp nào !",
+    "header": "⚽ DANH SÁCH TRẬN ĐẤU TRỰC TIẾP",
+    "allMatch": "Tất cả các trận đấu"
+  },
+  "TODAY_MATCH": {
+    "notie": "Hôm nay không có trận bóng nào !",
+    "header": "⚽ DANH SÁCH TRẬN ĐẤU HÔM NAY",
+    "allMatch": "Tất cả các trận đấu"
+  },
+  "WEEK_MATCH": {
+    "notie": "Tuần này không có trận bóng nào !",
+    "header": "⚽ DANH SÁCH TRẬN ĐẤU TUẦN NÀY",
+    "allMatch": "Tất cả các trận đấu"
+  },
+  "MONTH_MATCH": {
+    "notie": "Tháng này không có trận bóng nào !",
+    "header": "⚽ DANH SÁCH TRẬN ĐẤU THÁNG NÀY",
+    "allMatch": "Tất cả các trận đấu"
+  },
+  "NEXT_MONTH_MATCH": {
+    "notie": "Tháng sau không có trận bóng nào !",
+    "header": "⚽ DANH SÁCH TRẬN ĐẤU THÁNG SAU",
+    "allMatch": "Tất cả các trận đấu"
+  },
+  "LEAGUES": {
+    "notie": "Không có giải đấu nào !",
+    "header": "⚽ DANH SÁCH GIẢI ĐẤU",
+    "allMatch": "Tất cả các giải đấu"
+  },
+  "matchUpcoming": {
+    "header": "⚽ Bạn muốn xem danh sách trận đấu:",
+    "today": "Hôm nay",
+    "thisWeek": "Tuần này",
+    "thisMonth": "Tháng này",
+    "nextMonth": "Tháng sau",
+    "menu": "Menu"
+  },
+  "text": {
+    "currentPage": "Trang hiện tại:",
+    "firstPage": "Bạn đang ở trang đầu tiên !",
+    "endPage": "Bạn đã tới trang đầu kết thúc !"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "betHistory": {
+    "title": "BETTING INFORMATION",
+    "status": "Status",
+    "SETTLED": "Settled",
+    "RUNNING": "Running",
+    "day": "Day",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "thisWeek": "This week",
+    "lastWeek": "Last week",
+    "within14Days": "Within 14 days",
+    "date": "Date",
+    "placeholder": "Enter the betting ID or the name of the football team.",
+    "search": "Search",
+    "note": "Note: You can only view data from the past 14 days.",
+    "table": {
+      "soccer": "Soccer",
+      "index": "Index",
+      "detail": "Detail",
+      "selection": "Selection",
+      "live": " In-game (Danger Zone)",
+      "SPREAD": "Handicap match",
+      "TOTAL_POINTS": "Over/under match",
+      "bettingOdds": "Betting odds",
+      "wagerAmount": "Wager amount",
+      "risk": "Risk:",
+      "winLose": "Win / Lose",
+      "commission": "Commission",
+      "status": "Status",
+      "SETTLED": "Settled",
+      "RUNNING": "Running",
+      "win": "Win",
+      "lose": "Lose",
+      "firstHalf": "First half",
+      "fullTime": "Full-time"
+    }
+  }
+}
