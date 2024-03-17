@@ -130,4 +130,11 @@ export class LiveMatchScene {
       );
     }
   }
+
+  @Action(/.+/)
+  async onActions(ctx) {
+    const action = ctx.update.callback_query.data;
+    console.log('Action', action);
+    const res = await this.p88IntegrationService.getDetailEvent(action);
+  }
 }

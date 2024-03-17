@@ -11,9 +11,7 @@ export class P88IntegrationService {
   async getFixtures() {
     try {
       const timeZone7 = false;
-      const resApi = await this.apiP88.get(
-        'https://api.p88.bet/v3/fixtures?sportId=29',
-      );
+      const resApi = await this.apiP88.get('/v3/fixtures?sportId=29');
 
       const dataFixtures = resApi.data.league;
       const dataFixturesMatch = dataFixtures
@@ -42,39 +40,25 @@ export class P88IntegrationService {
     try {
       const [liveApiRes, fixturesRes] = await Promise.all([
         this.apiP88.get('/v2/inrunning'),
-        this.apiP88.get('https://api.p88.bet/v3/fixtures?sportId=29'),
+        this.apiP88.get('/v3/fixtures?sportId=29'),
       ]);
-
-      const dataLiveSoccer = liveApiRes.data.sports.find(
-        (item) => item.id === 29,
-      );
-      const liveMatch = dataLiveSoccer
-        ? dataLiveSoccer.leagues.flatMap((item) =>
-            item.events.filter((event) => event.state !== 9),
-          )
-        : [];
-
-      if (!liveMatch.length) {
-        return liveMatch;
-      }
-
-      const aIds = liveMatch.map((item) => item.id);
-      const dataFixtures = fixturesRes.data.league || [];
-
-      const dataLiveMatch = dataFixtures.flatMap((leagueItem) =>
-        leagueItem.events.filter((event) => aIds.includes(event.id)),
+      const leaguesLive = liveApiRes.data.sports[0].leagues;
+      const listId_LiveMatch = leaguesLive.flatMap((league) =>
+        league.events.map((event) => event.id),
       );
 
-      const result = dataLiveMatch.filter(
-        (item) =>
-          !item.home.includes('(Corners)') && !item.away.includes('(Corners)'),
-      );
+      const allEvents = fixturesRes.data.league.flatMap((item) => item.events);
 
-      result.sort(
-        (a, b) => new Date(b.starts).getTime() - new Date(a.starts).getTime(),
+      const liveEvents = allEvents.filter((item) =>
+        listId_LiveMatch.includes(item.id),
       );
+      const liveEvents_sortTime = liveEvents.sort((item1, item2) => {
+        return (
+          new Date(item1.starts).getTime() - new Date(item2.starts).getTime()
+        );
+      });
 
-      return result;
+      return liveEvents_sortTime;
     } catch (error) {
       return [];
     }
@@ -87,7 +71,11 @@ export class P88IntegrationService {
     const dataTodayMatch = dataFixturesMatch.filter((event: any) =>
       event.starts.startsWith(today),
     );
-    return dataTodayMatch;
+
+    const todayEvents_sortHome = dataTodayMatch.sort((a, b) =>
+      a.home.localeCompare(b.home),
+    );
+    return todayEvents_sortHome;
   }
 
   async getWeekMatch() {
@@ -100,7 +88,11 @@ export class P88IntegrationService {
       endOfWeek.setDate(endOfWeek.getDate() + (8 - today.getDay()));
       return eventDate >= today && eventDate <= endOfWeek;
     });
-    return dataWeekMatch;
+
+    const weekEvents_sortHome = dataWeekMatch.sort((a, b) =>
+      a.home.localeCompare(b.home),
+    );
+    return weekEvents_sortHome;
   }
 
   async getMonthMatch() {
@@ -120,7 +112,11 @@ export class P88IntegrationService {
       (event) =>
         new Date(event.starts) >= today && new Date(event.starts) <= endOfMonth,
     );
-    return dataMonthMatch;
+
+    const monthEvents_sortHome = dataMonthMatch.sort((a, b) =>
+      a.home.localeCompare(b.home),
+    );
+    return monthEvents_sortHome;
   }
 
   async getNextMonthMatch() {
@@ -128,9 +124,13 @@ export class P88IntegrationService {
 
     const dataNextMonthMatch = dataFixturesMatch.filter(
       (event) =>
-        new Date(event.starts).getMonth() === new Date().getMonth() + 1,
+        new Date(event.starts).getUTCMonth() === new Date().getUTCMonth() + 1,
     );
-    return dataNextMonthMatch;
+    const nextMonthEvents_sortHome = dataNextMonthMatch.sort((a, b) =>
+      a.home.localeCompare(b.home),
+    );
+
+    return nextMonthEvents_sortHome;
   }
 
   async getDataTournament() {
@@ -156,5 +156,15 @@ export class P88IntegrationService {
     } catch (error) {
       return [];
     }
+  }
+
+  async getDetailEvent(eventId: any) {
+    try {
+      const resApi = await this.apiP88.get(
+        `/v3/fixtures?sportId=29&eventIds=${eventId}`,
+      );
+      const detailEvent = resApi.data.league[0];
+      console.log(detailEvent);
+    } catch (error) {}
   }
 }
