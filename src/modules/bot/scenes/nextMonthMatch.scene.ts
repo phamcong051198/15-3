@@ -18,7 +18,7 @@ export class NextMonthMatchScene {
   @SceneEnter()
   async onSceneEnter(ctx) {
     const data = await this.p88IntegrationService.getNextMonthMatch();
-    console.log(data);
+
     if (!data.length) {
       const message = await ctx.replyWithHTML(
         ctx.i18n.t('NEXT_MONTH_MATCH.notie'),

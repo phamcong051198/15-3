@@ -28,6 +28,7 @@
     "@nestjs/mongoose": "^10.0.2",
     "@nestjs/platform-express": "^10.0.0",
     "axios": "^1.6.7",
+    "class-validator": "^0.14.1",
     "express-handlebars": "^7.1.2",
     "hbs": "^4.2.0",
     "i18n-express": "^1.1.3",
